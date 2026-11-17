@@ -1,0 +1,203 @@
+:root {
+    --primary: #4a90e2;
+    --primary-hover: #357abd;
+    --bg: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-main: #2c3e50;
+    --text-muted: #7f8c8d;
+    --border: #e1e8ed;
+    --error: #e74c3c;
+    --success: #27ae60;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 640px;
+    background: var(--card-bg);
+    padding: 32px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    height: fit-content;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-main);
+    text-align: center;
+    letter-spacing: -0.5px;
+  }
+
+  .search-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fafbfc;
+  }
+
+  .search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+    background: #fff;
+  }
+
+  .status-message {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 16px;
+    display: none; /* Скрыто по умолчанию */
+  }
+
+  .status-message.loading {
+    display: block;
+    background: #eaf4fc;
+    color: var(--primary);
+    animation: pulse 1.5s infinite;
+  }
+
+  .status-message.empty {
+    display: block;
+    background: #f8f9fa;
+    color: var(--text-muted);
+  }
+
+  .status-message.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #fdf0ef;
+    color: var(--error);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .country-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 4px; /* Для скроллбара */
+  }
+
+  /* Стилизация скроллбара */
+  .country-list::-webkit-scrollbar { width: 6px; }
+  .country-list::-webkit-scrollbar-track { background: transparent; }
+  .country-list::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
+
+  .country-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fff;
+  }
+
+  .country-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .country-card img {
+    width: 40px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .card-info strong {
+    font-size: 16px;
+    color: var(--text-main);
+  }
+
+  .card-info span {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .country-detail {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .country-detail h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: var(--text-main);
+  }
+
+  .country-detail p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--primary);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  button:hover { background-color: var(--primary-hover); }
+  .close-btn { background-color: #95a5a6; }
+  .close-btn:hover { background-color: #7f8c8d; }

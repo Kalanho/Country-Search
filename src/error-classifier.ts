@@ -1,4 +1,4 @@
-import { HttpError } from './http-error';
+import { HttpError } from './http-error.js';
 
 export type ErrorKind = 'aborted' | 'timeout' | 'http' | 'network';
 

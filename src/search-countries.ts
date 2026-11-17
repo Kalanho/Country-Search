@@ -1,5 +1,5 @@
-import type { RawCountry } from './types';
-import { HttpError } from './http-error';
+import type { RawCountry } from './types.js';
+import { HttpError } from './http-error.js';
 
 const BASE = 'https://countries.dev';
 

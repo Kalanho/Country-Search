@@ -1,4 +1,3 @@
-// src/error-classifier.test.ts
 import { describe, it, expect } from 'vitest';
 import { classifyError } from './error-classifier';
 import { HttpError } from './http-error';
@@ -19,7 +18,6 @@ describe('classifyError', () => {
   });
 
   it('404 не доходит до классификатора (обрабатывается как пустой результат)', () => {
-    // 404 обрабатывается внутри searchCountries, возвращая []
     expect(true).toBe(true);
   });
 });
