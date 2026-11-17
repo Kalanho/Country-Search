@@ -1,7 +1,7 @@
 // src/error-classifier.test.ts
 import { describe, it, expect } from 'vitest';
 import { classifyError } from './error-classifier';
-import { HttpError } from './http-error.test';
+import { HttpError } from './http-error';
 
 describe('classifyError', () => {
   it('AbortError — отмена, не ошибка для пользователя', () => {
