@@ -15,11 +15,11 @@ export interface CountryCard {
   name: string;
   capital: string;
   region: string;
+  subregion: string;
   population: number;
   flagUrl: string;
   area: number | null;
   borders: string[];
   languages: string[];
   currencies: string[];
-  subregion: string;
 }

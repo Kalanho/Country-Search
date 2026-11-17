@@ -1,203 +1,216 @@
 :root {
-    --primary: #4a90e2;
-    --primary-hover: #357abd;
-    --bg: #f4f7f6;
+    --bg: #f5f7fa;
     --card-bg: #ffffff;
-    --text-main: #2c3e50;
-    --text-muted: #7f8c8d;
-    --border: #e1e8ed;
-    --error: #e74c3c;
-    --success: #27ae60;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    --radius: 12px;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --primary: #3b82f6;
+    --tag-bg: #f1f5f9;
+    --error: #ef4444;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  }
+
+  [data-theme="dark"] {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --primary: #3b82f6;
+    --tag-bg: #334155;
+    --error: #ef4444;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg);
     color: var(--text-main);
     display: flex;
-    justify-content: center;
-    padding: 40px 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
     min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
   }
 
+  /* --- КОНТЕЙНЕР --- */
   .app-container {
     width: 100%;
-    max-width: 640px;
+    max-width: 800px;
     background: var(--card-bg);
-    padding: 32px;
-    border-radius: var(--radius);
+    padding: 40px;
+    border-radius: 20px;
     box-shadow: var(--shadow);
-    height: fit-content;
+    transition: background-color 0.3s;
   }
 
-  h1 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 24px;
-    color: var(--text-main);
-    text-align: center;
-    letter-spacing: -0.5px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 30px;
   }
 
-  .search-wrapper {
-    position: relative;
-    margin-bottom: 20px;
+  .title-group h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
   }
 
-  .search-input {
-    width: 100%;
-    padding: 14px 16px;
-    font-size: 16px;
-    border: 2px solid var(--border);
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background: #fafbfc;
-  }
-
-  .search-input:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
-    background: #fff;
-  }
-
-  .status-message {
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 16px;
-    display: none; /* Скрыто по умолчанию */
-  }
-
-  .status-message.loading {
-    display: block;
-    background: #eaf4fc;
-    color: var(--primary);
-    animation: pulse 1.5s infinite;
-  }
-
-  .status-message.empty {
-    display: block;
-    background: #f8f9fa;
+  .title-group p {
     color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 5px;
   }
 
-  .status-message.error {
+  /* --- КНОПКА ТЕМЫ --- */
+  .theme-toggle {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    background: #fdf0ef;
-    color: var(--error);
+    transition: transform 0.2s;
   }
+  .theme-toggle:hover { transform: scale(1.1); }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+  /* --- ПОИСК --- */
+  .search-input {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 18px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s;
   }
+  .search-input:focus { border-color: var(--primary); }
 
+  /* --- ИСТОРИЯ (ТЕГИ) --- */
+  .history-section {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .history-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .history-tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .history-tag:hover { background: var(--border); }
+
+  /* --- СТАТУСЫ --- */
+  .status-message { margin: 20px 0; font-size: 14px; font-weight: 500; display: none; }
+  .status-message.loading { display: block; color: var(--primary); }
+  .status-message.empty { display: block; color: var(--text-muted); }
+  .status-message.error { display: block; color: var(--error); }
+
+  /* --- СПИСОК СТРАН --- */
   .country-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    max-height: 500px;
-    overflow-y: auto;
-    padding-right: 4px; /* Для скроллбара */
+    gap: 16px;
+    margin-top: 30px;
   }
-
-  /* Стилизация скроллбара */
-  .country-list::-webkit-scrollbar { width: 6px; }
-  .country-list::-webkit-scrollbar-track { background: transparent; }
-  .country-list::-webkit-scrollbar-thumb { background: #cbd5e0; border-radius: 3px; }
 
   .country-card {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
+    background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 12px;
+    padding: 16px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    background: #fff;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    align-items: center;
+    gap: 20px;
   }
-
   .country-card:hover {
+    transform: translateY(-2px);
     border-color: var(--primary);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
   }
 
-  .country-card img {
-    width: 40px;
-    height: 28px;
+  .country-flag {
+    width: 80px;
+    height: 50px;
     object-fit: cover;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
-  .card-info {
+  .country-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
+  }
+  .country-info h3 { font-size: 20px; font-weight: 700; }
+  .country-info p { font-size: 14px; color: var(--text-muted); }
+  .country-info .population { font-size: 12px; margin-top: 4px; }
+
+  /* --- МОДАЛЬНОЕ ОКНО --- */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
+    display: none; justify-content: center; align-items: center;
+    z-index: 1000; padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  
+  .modal-content {
+    background: var(--card-bg);
+    width: 100%; max-width: 500px;
+    border-radius: 20px; padding: 40px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-height: 90vh; overflow-y: auto;
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
   }
 
-  .card-info strong {
-    font-size: 16px;
-    color: var(--text-main);
+  .modal-close {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--bg); border: none; width: 32px; height: 32px;
+    border-radius: 50%; cursor: pointer; color: var(--text-main);
+    font-size: 16px; font-weight: bold;
   }
+  .modal-close:hover { background: var(--error); color: white; }
 
-  .card-info span {
-    font-size: 13px;
-    color: var(--text-muted);
+  .modal-flag {
+    width: 100%; max-width: 300px; display: block; margin: 0 auto 20px;
+    border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
-
-  .country-detail {
-    margin-top: 24px;
-    padding: 20px;
-    background: #f8fafc;
-    border-radius: 8px;
-    border-left: 4px solid var(--primary);
-    animation: slideIn 0.3s ease;
+  .modal-title { font-size: 28px; text-align: center; margin-bottom: 20px; }
+  
+  .detail-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px;
   }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .country-detail h2 {
-    font-size: 20px;
-    margin-bottom: 12px;
-    color: var(--text-main);
-  }
-
-  .country-detail p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-  }
-
-  button {
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #fff;
-    background-color: var(--primary);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-
-  button:hover { background-color: var(--primary-hover); }
-  .close-btn { background-color: #95a5a6; }
-  .close-btn:hover { background-color: #7f8c8d; }
+  .detail-item { background: var(--bg); padding: 12px; border-radius: 8px; }
+  .detail-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px; font-weight: bold; }
+  .detail-value { font-size: 14px; font-weight: 600; }
