@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && copyfiles index.html dist",
+    "build": "tsc && copyfiles index.html style.css dist",
     "preview": "vite preview",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write .",
