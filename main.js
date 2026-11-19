@@ -155,18 +155,25 @@ function openModal(card) {
     const img = document.createElement('img');
     img.src = card.flagUrl;
     img.className = 'modal-flag';
+    img.alt = `Флаг ${card.name}`;
     const h2 = document.createElement('h2');
     h2.className = 'modal-title';
     h2.textContent = card.name;
+    // Описание страны
+    const desc = document.createElement('p');
+    desc.className = 'modal-desc';
+    desc.textContent = card.description;
     const grid = document.createElement('div');
     grid.className = 'detail-grid';
+    // Собираем данные для сетки
     const details = [
-        { label: 'Столица', value: card.capital },
-        { label: 'Регион', value: card.region },
-        { label: 'Население', value: card.population.toLocaleString('ru-RU') },
-        { label: 'Площадь', value: card.area ? `${card.area.toLocaleString('ru-RU')} км²` : '—' },
-        { label: 'Языки', value: card.languages.join(', ') || '—' },
-        { label: 'Валюты', value: card.currencies.join(', ') || '—' },
+        { label: 'CAPITAL', value: card.capital },
+        { label: 'REGION', value: `${card.subregion}${card.region ? ', ' + card.region : ''}` },
+        { label: 'POPULATION', value: card.population.toLocaleString('en-US') },
+        { label: 'AREA', value: card.area ? `${card.area.toLocaleString('en-US')} km²` : '—' },
+        { label: 'BORDERS', value: card.borders.length ? card.borders.join(', ') : 'None' },
+        { label: 'LANGUAGES', value: card.languages.join(', ') || '—' },
+        { label: 'CURRENCIES', value: card.currencies.join(', ') || '—' },
     ];
     for (const d of details) {
         const item = document.createElement('div');
@@ -180,7 +187,7 @@ function openModal(card) {
         item.append(label, val);
         grid.append(item);
     }
-    modalContent.append(closeBtn, img, h2, grid);
+    modalContent.append(closeBtn, img, h2, desc, grid);
     modalOverlay.classList.add('active');
     // Просто закрываем при клике на фон (без лишних переменных, чтобы не ругался линтер)
     modalOverlay.addEventListener('click', closeModal, { once: true });
