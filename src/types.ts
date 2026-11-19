@@ -9,6 +9,7 @@ export interface RawCountry {
   borders?: string[];
   languages?: Array<{ name: string }>;
   currencies?: Array<{ code?: string; name?: string; symbol?: string }>;
+  demonyms?: { eng?: { m?: string; f?: string } }; // Добавили демоним
 }
 
 export interface CountryCard {
@@ -22,4 +23,5 @@ export interface CountryCard {
   borders: string[];
   languages: string[];
   currencies: string[];
+  description: string; // Добавили описание
 }
